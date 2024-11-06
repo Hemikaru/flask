@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизація та реєстрація</title>
+    <style>
+        /* Стилі для вкладок */
+        .tab {
+            cursor: pointer;
+            padding: 10px 20px;
+            display: inline-block;
+            background-color: #ddd;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .tab.active {
+            background-color: #bbb;
+        }
+        .tab-content {
+            display: none;
+            margin-top: 20px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h2>Авторизація та реєстрація</h2>
+    <div>
+        <span class="tab active" onclick="showTab('login')">Авторизація</span>
+        <span class="tab" onclick="showTab('register')">Реєстрація</span>
+    </div>
+
+    <!-- Форма авторизації -->
+    <div id="login" class="tab-content active">
+        <form method="POST" action="/">
+            <input type="hidden" name="action" value="login">
+            <label for="username">Ім'я користувача:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Увійти</button>
+        </form>
+    </div>
+
+    <!-- Форма реєстрації -->
+    <div id="register" class="tab-content">
+        <form method="POST" action="/">
+            <input type="hidden" name="action" value="register">
+            <label for="username">Ім'я користувача:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Зареєструватися</button>
+        </form>
+    </div>
+
+    <script>
+        // Скрипт для перемикання між вкладками
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.querySelector(`#${tabName}`).classList.add('active');
+            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
